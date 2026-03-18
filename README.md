@@ -40,6 +40,16 @@ Aplicación web de ecommerce con pipeline CI/CD completo.
 - **Pipeline:** git push → Jenkins → Docker build → Deploy automático
 - **Features:** Login, registro, carrito de compras
 
+### ⚡ [Kafka Lab - Docker + Rancher](https://github.com/guimore/kafka-lab)
+Laboratorio de Apache Kafka con mensajería en tiempo real.
+- **Stack:** Kafka, Docker, Rancher, Kali Linux
+- **Features:** KRaft mode, topics, productor/consumidor en tiempo real
+
+
+
+
+
+
 ---
 
 ## 💼 Experiencia
