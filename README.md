@@ -34,6 +34,8 @@ Especialista en Infraestructura IT con más de 15 años de trayectoria en entorn
 ![HAProxy](https://img.shields.io/badge/HAProxy-FF1010?style=flat&logo=haproxy&logoColor=white)
 ![Nessus](https://img.shields.io/badge/Nessus-00B4E0?style=flat&logoColor=white)
 ![Ethical Hacking](https://img.shields.io/badge/Ethical_Hacking-black?style=flat&logoColor=white)
+![Suricata](https://img.shields.io/badge/Suricata-EF3B2D?style=flat&logoColor=white)
+![Wazuh](https://img.shields.io/badge/Wazuh-00A9CE?style=flat&logoColor=white)
 
 ---
 
@@ -44,12 +46,17 @@ Laboratorio virtualizado de Kubernetes con firewall pfSense para práctica de se
 - **Arquitectura:** NAT (WAN) + Host-Only (LAN) con segmentación por zonas.
 - **Seguridad:** RBAC, TLS habilitados y endurecimiento (Hardening) basado en normas de **IBM Cybersecurity**.
 - **Orquestación:** Master en Kali, Workers en Ubuntu Server gestionados vía Rancher UI.
+- **IDS/IPS:** Suricata corriendo en nodo Master (Kali) y nodo Worker (Ubuntu) para detección de intrusiones a nivel de red y pods.
+- **SIEM:** Wazuh desplegado en pfSense para monitoreo centralizado, correlación de eventos y alertas de seguridad perimetral.
 
-### 🤖 [Automation Hub - Ansible & Python](https://github.com/guimore/guimore)
+### 🤖 [Ansible Playbooks - IaC](https://github.com/guimore/ansible-playbooks)
 Scripts de Infraestructura como Código (IaC) para gestión de flotas de servidores.
-- **[apacheinstalacion.yml](./automation/apacheinstalacion.yml):** Playbook multi-OS con lógica condicional que detecta la familia del SO (`ansible_os_family`). Instala Apache en entornos **Debian/Ubuntu** (apt) y **RHEL/CentOS** (dnf).
-- **[info.yml](./automation/info.yml):** Herramienta de auditoría que extrae en tiempo real Hostname, IP, interfaces de red y puntos de montaje de todos los servidores del inventario.
-- **TP Final Python:** Proyecto enfocado en la resolución de problemas mediante lógica de programación, manejo de estructuras de datos y automatización. *Certificación:* Ministerio de Educación (CABA) - 80 horas reloj.
+- **[apacheinstalacion.yml](https://github.com/guimore/ansible-playbooks/blob/main/apacheinstalacion.yml):** Playbook multi-OS con lógica condicional que detecta la familia del SO (`ansible_os_family`). Instala Apache en entornos **Debian/Ubuntu** (apt) y **RHEL/CentOS** (dnf).
+- **[info.yml](https://github.com/guimore/ansible-playbooks/blob/main/info.yml):** Herramienta de auditoría que extrae en tiempo real Hostname, IP, interfaces de red y puntos de montaje de todos los servidores del inventario.
+
+### 🐍 [TP Final Python - Talento Tech](https://github.com/guimore/tp_2025python)
+Proyecto enfocado en la resolución de problemas mediante lógica de programación, manejo de estructuras de datos y automatización.
+- *Certificación:* Ministerio de Educación (CABA) - 80 horas reloj.
 
 ### 🛒 [Tienda Online - Flask + Docker + Jenkins CI/CD](https://github.com/guimore/tienda-online)
 Aplicación web de ecommerce con pipeline CI/CD completo.
@@ -100,9 +107,9 @@ INTERNET / MÓDEM
 
 | Componente | Software | Rol | IP | RAM |
 |---|---|---|---|---|
-| pfSense | pfSense 2.7.2 | Firewall / Gateway | 192.168.56.2 | 1 GB |
-| Master | Kali Linux | K8s Control Plane | 192.168.56.104 | 5 GB |
-| Worker | Ubuntu Server | K8s Worker Node | 192.168.56.101 | 4 GB |
+| pfSense | pfSense 2.7.2 | Firewall / Gateway + Wazuh | 192.168.56.2 | 1 GB |
+| Master | Kali Linux | K8s Control Plane + Suricata | 192.168.56.104 | 5 GB |
+| Worker | Ubuntu Server | K8s Worker Node + Suricata | 192.168.56.101 | 4 GB |
 | Host | Windows 11 | Hypervisor VirtualBox | 192.168.56.1 | 16 GB |
 
 **Segmentación de red:**
