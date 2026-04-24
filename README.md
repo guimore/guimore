@@ -182,6 +182,114 @@ INTERNET / MÓDEM
 
 ---
 
+## 🔐 Wazuh SIEM + Suricata IDS Lab
+
+Laboratorio de ciberseguridad completo con detección de intrusiones en tiempo real, análisis de amenazas y respuesta automática ante ataques, implementado sobre el mismo entorno K8s Security Lab.
+
+### Arquitectura
+
+```
+                        INTERNET / MODEM
+                              │
+                              ▼
+               ┌──────────────────────────────┐
+               │       GATEWAY  pfSense        │
+               │  WAN em0 : 10.0.2.15 (NAT)   │ ◄── Perímetro
+               │  LAN em1 : 192.168.56.2      │
+               │  Suricata IDS                 │
+               └──────────────┬────────────────┘
+                              │
+          ┌───────────────────┴───────────────────┐
+          │        RED INTERNA 192.168.56.0/24    │
+          └───────────────────┬───────────────────┘
+                   │                      │
+                   ▼                      ▼
+  ┌─────────────────────────┐  ┌──────────────────────────┐
+  │   KALI LINUX — Atacante │  │  UBUNTU SERVER — SIEM    │
+  │   eth0: 192.168.56.104  │  │  enp0s8: 192.168.56.101  │
+  │─────────────────────────│  │──────────────────────────│
+  │  Wazuh Agent        ✓   │  │  Wazuh Manager       ✓   │
+  │  Suricata 8.0.3     ✓   │  │  Wazuh Indexer       ✓   │
+  │  49.830 reglas ET       │  │  Dashboard :5601     ✓   │
+  │  Nmap · SSH brute       │  │  Filebeat 7.10.2     ✓   │
+  │  EICAR · Red Team       │  │  Suricata IDS        ✓   │
+  └──────────┬──────────────┘  └──────────┬───────────────┘
+             │  agente / alertas (1514/1515) │
+             └───────────────────────────────┘
+```
+
+### Stack implementado
+
+| Componente | Versión | Rol |
+|---|---|---|
+| Wazuh Manager | 4.14.4 | SIEM — correlación de eventos |
+| Wazuh Indexer | 4.14.4 | OpenSearch HTTPS:9200 con SSL |
+| Wazuh Dashboard | 4.14.4 | Visualización puerto 5601 |
+| Wazuh Agent | 4.14.4 | Agente en Kali — recolección de logs |
+| Filebeat | 7.10.2 | Envío de alertas al indexer |
+| Suricata | 8.0.3 | IDS — 49.830 reglas Emerging Threats |
+
+### Flujos de detección implementados
+
+**[1] Nmap port scan**
+```
+Kali ──────────────► Suricata (SID 9000001)
+                            │
+                            ▼
+              eve.json ──► Wazuh Agent ──► Manager
+                                               │
+                                               ▼
+                                  Dashboard rule 86601 — Nivel 3
+                                  "Suricata: Alert - NMAP SCAN"
+
+Técnica MITRE ATT&CK: T1046 — Network Service Discovery
+```
+
+**[2] SSH brute force + Active Response**
+```
+Ubuntu ──► ssh fakeuser@kali ──► PAM / sshd logs en Kali
+                                        │
+                                        ▼
+                       Wazuh Agent ──► Manager
+                                        │
+                                        ▼
+                            Nivel 10 — rules 5551 / 2502
+                            "PAM: Multiple failed logins"
+                                        │
+                                        ▼
+                            Active Response: firewall-drop
+                            iptables DROP 192.168.56.101
+                            Bloqueo automático 300 segundos
+
+Técnica MITRE ATT&CK: T1110.001 — Password Guessing
+                       T1021.004 — SSH Lateral Movement
+```
+
+**[3] EICAR malware test**
+```
+Kali ──► /tmp/eicar_test.txt ──► rootcheck scan
+                                        │
+                                        ▼
+                       Wazuh Agent ──► Manager
+                                        │
+                                        ▼
+                            rule 510 — Nivel 7
+                            "Trojaned version of file detected"
+```
+
+### Resultados
+
+| Métrica | Resultado |
+|---|---|
+| Alertas indexadas | 310+ el primer día |
+| Ataques simulados y detectados | 3 |
+| Reglas Suricata activas | 49.830 ET |
+| CVE detectado | CVE-2026-40606 en mitmproxy (Kali) |
+| MITRE ATT&CK | Mapeado automáticamente en dashboard |
+| Active Response | Bloqueo de IP verificado con iptables |
+
+---
+
 ## 💼 Experiencia
 
 | Empresa | Rol | Período |
