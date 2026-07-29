@@ -314,7 +314,7 @@ Casos reales de troubleshooting sobre la infraestructura del laboratorio, docume
 **Prevención:** Documentar la configuración SSL inicial y automatizar su verificación con un playbook de Ansible que chequee certificados y estado del keystore antes de cada reinicio.
 
 
-
+---
 
 | Empresa | Rol | Período |
 |---|---|---|
