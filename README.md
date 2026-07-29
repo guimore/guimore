@@ -359,7 +359,7 @@ Casos reales de troubleshooting sobre la infraestructura del laboratorio, docume
 ### 🎓 Educación IT
 - **Analista de Sistemas** — IFTS Nº12 Recibido
 - **Especialista Python** — Talento Tech (Gobierno de la Ciudad de Buenos Aires) — 80hs
-- **lic. en tecnologias digitales - Unicaba(en curso)
+- **Lic. en tecnologias digitales** -- Unicaba(en curso)
    
 ---
 
