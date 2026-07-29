@@ -357,9 +357,10 @@ Casos reales de troubleshooting sobre la infraestructura del laboratorio, docume
 - 🏆 **OpenShift/Containers (DO188)**
 
 ### 🎓 Educación IT
-- **Analista de Sistemas** — IFTS Nº12 | Egreso estimado Julio 2026
+- **Analista de Sistemas** — IFTS Nº12 Recibido
 - **Especialista Python** — Talento Tech (Gobierno de la Ciudad de Buenos Aires) — 80hs
-
+- **lic. en tecnologias digitales - Unicaba(en curso)
+   
 ---
 
 ## 📊 GitHub Stats
