@@ -57,12 +57,28 @@ Scripts de Infraestructura como Código (IaC) para gestión de flotas de servido
 ### 🐍 [TP Final Python - Talento Tech](https://github.com/guimore/tp_2025python)
 Proyecto enfocado en la resolución de problemas mediante lógica de programación, manejo de estructuras de datos y automatización.
 - *Certificación:* Ministerio de Educación (CABA) - 80 horas reloj.
-
+---
 ### 🛒 [Tienda Online - Flask + Docker + Jenkins CI/CD](https://github.com/guimore/tienda-online)
 Aplicación web de ecommerce con pipeline CI/CD completo.
 - **Stack:** Python, Flask, Docker, Jenkins, GitHub
 - **Pipeline:** git push → Jenkins → Docker build → Deploy automático
 - **Features:** Login, registro, carrito de compras
+**Pipeline Jenkins — etapas:**
+┌─────────────┐ ┌─────────────┐ ┌─────────────┐ ┌─────────────┐
+│ git push │──►│ Build │──►│ Docker │──►│ Deploy │
+│ (webhook) │ │ (checkout) │ │ build │ │ (contenedor)│
+└─────────────┘ └─────────────┘ └─────────────┘ └─────────────┘
+**Configuración del pipeline (Jenkinsfile):**
+- Trigger automático vía webhook en cada `push` a `main`
+- Etapa de checkout del código desde GitHub
+- Build de imagen Docker con tag versionado
+- Deploy automático del contenedor actualizado
+- Jenkins corriendo en instancia local (Ubuntu Server / homelab)
+
+**Skills demostrados:** Pipelines declarativos (Jenkinsfile), integración Docker–Jenkins, triggers por webhook, gestión de credenciales en Jenkins Credentials Store.
+  
+---
+
 
 ### ⚡ [Kafka Lab - Docker + Rancher](https://github.com/guimore/kafka-lab)
 Laboratorio de Apache Kafka con mensajería en tiempo real.
