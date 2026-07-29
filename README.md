@@ -291,6 +291,30 @@ Kali ──► /tmp/eicar_test.txt ──► rootcheck scan
 ---
 
 ## 💼 Experiencia
+---
+
+## 🔧 Incidentes Resueltos
+
+Casos reales de troubleshooting sobre la infraestructura del laboratorio, documentados con el mismo criterio que se usaría en un post-mortem productivo.
+
+### Wazuh Indexer no arrancaba (SSL misconfig)
+
+**Entorno:** Ubuntu Server (VirtualBox) — Wazuh 4.14.4
+
+**Síntoma:** El servicio `wazuh-indexer` fallaba al arrancar, sin recibir eventos ni exponer el puerto 9200.
+
+**Diagnóstico:** Se revisaron logs del servicio (`journalctl -u wazuh-indexer`) y se identificó un problema de configuración SSL entre los certificados del indexer y las credenciales almacenadas en el keystore de OpenSearch.
+
+**Causa raíz:** Certificados SSL mal referenciados en la configuración + credenciales desactualizadas en el keystore, lo que impedía el handshake TLS interno del cluster.
+
+**Fix:** Se corrigió la configuración SSL y se regeneraron/actualizaron las credenciales del keystore. Adicionalmente se instaló y configuró Filebeat para asegurar el envío correcto de alertas al indexer.
+
+**Resultado:** Servicio operativo, indexer recibiendo y correlacionando eventos correctamente vía Wazuh Manager.
+
+**Prevención:** Documentar la configuración SSL inicial y automatizar su verificación con un playbook de Ansible que chequee certificados y estado del keystore antes de cada reinicio.
+
+
+
 
 | Empresa | Rol | Período |
 |---|---|---|
