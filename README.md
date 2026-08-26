@@ -64,10 +64,10 @@ Aplicación web de ecommerce con pipeline CI/CD completo.
 - **Pipeline:** git push → Jenkins → Docker build → Deploy automático
 - **Features:** Login, registro, carrito de compras
 **Pipeline Jenkins — etapas:**
-┌─────────────┐ ┌─────────────┐ ┌─────────────┐ ┌─────────────┐
-│ git push │──►│ Build │──►│ Docker │──►│ Deploy │
-│ (webhook) │ │ (checkout) │ │ build │ │ (contenedor)│
-└─────────────┘ └─────────────┘ └─────────────┘ └─────────────┘
+┌─────────────┐      ┌─────────────┐   ┌─────────────┐   ┌─────────────┐
+│ git push     │──►  │  Build      │──►│    Docker   │──►│ Deploy      │
+│ (webhook)   │      │ (checkout)  │   │     build   │   │ (contenedor)│
+└─────────────┘      └─────────────┘   └─────────────┘   └─────────────┘
 **Configuración del pipeline (Jenkinsfile):**
 - Trigger automático vía webhook en cada `push` a `main`
 - Etapa de checkout del código desde GitHub
