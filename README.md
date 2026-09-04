@@ -1,5 +1,5 @@
 # Guido J. Mora Medina
-## DevOps Engineer | SysAdmin | DevSecOps — Buenos Aires, Argentina
+## DevOps Engineer | SysAdmin | Analista de Sistemas — Buenos Aires, Argentina
 📧 mora.guido@gmail.com | 💼 [LinkedIn](https://linkedin.com/in/guido-mora-42170a1a9/) | 🐙 [GitHub](https://github.com/guimore)
 
 ---
